@@ -1,36 +1,26 @@
 
-# Brain Tumor Prediction Website
+# Brain Tumor Prediction Website 🧠
 
 ## Introduction
 This project focuses on predicting brain tumors using advanced deep learning techniques. The goal is to identify and classify tumors in brain MRI scans, leveraging state-of-the-art models and image processing methods. The system provides accurate predictions, helping healthcare professionals in the diagnosis process.
 
 ## Implementation
 1. Clone the repository and navigate to the project directory.
-2. Ensure all required libraries are installed by running:
-   ```
-   pip install -r requirements.txt
-   ```
-3. The main model used in this project is based on convolutional neural networks (CNNs). To change the model configuration, modify the following line in the configuration file:
-   ```python
-   model.load_weights('model_weights.h5')
-   ```
-   - Replace `'model_weights.h5'` with the path to your desired model weights.
+3. The main model used in this project is based on convolutional neural networks (CNNs).
 
 ## Usage
-To run the brain tumor prediction script, use the following command:
+To run the brain tumor prediction website, use the following command:
+
 ```bash
 python app.py 
 ```
 
 ## Features
-
 - **Tumor Prediction**: Analyze MRI scans to predict whether a brain tumor is present and classify it into specific categories.
   
 - **Image Preprocessing**: Automated preprocessing steps including resizing, normalization, and augmentation to improve model accuracy.
   
 - **Visualization**: The system generates visual overlays on MRI scans, highlighting tumor regions when detected.
-
-- **Model Training and Evaluation**: Provides training scripts for building and validating models on custom datasets.
 
 - **Output**: Generates prediction results including the classification label, probability score, and visual output (if applicable).
 
@@ -54,6 +44,5 @@ To contribute to the project:
 3. Commit your changes and open a pull request, clearly describing your modifications.
 
 ## Authors
-- **Nguyễn Công Huy**
 - **Đỗ Lý Anh Kiệt**
-- **Nguyễn Huỳnh Tú**
+
