@@ -1,5 +1,5 @@
 
-# Brain Tumor Prediction Project
+# Brain Tumor Prediction Website
 
 ## Introduction
 This project focuses on predicting brain tumors using advanced deep learning techniques. The goal is to identify and classify tumors in brain MRI scans, leveraging state-of-the-art models and image processing methods. The system provides accurate predictions, helping healthcare professionals in the diagnosis process.
