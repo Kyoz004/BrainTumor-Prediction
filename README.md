@@ -6,7 +6,7 @@ This project focuses on predicting brain tumors using advanced deep learning tec
 
 ## Implementation
 1. Clone the repository and navigate to the project directory.
-3. The main model used in this project is based on convolutional neural networks (CNNs).
+3. The main model used in this project is based on convolutional neural networks (CNNs). You can find my models notebooks from Kaggle: Link
 
 ## Usage
 To run the brain tumor prediction website, use the following command:
