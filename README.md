@@ -1,4 +1,4 @@
-# Brain Tumor Detection System
+# Brain Tumor Detection System 🧠
 
 ## Overview
 A web-based application that uses deep learning to detect and classify brain tumors from MRI scans. The system provides real-time analysis and visualization of results with high accuracy predictions.
@@ -102,6 +102,25 @@ python app.py
 - Accuracy: 98.5%
 - Classes: Multiple types of brain tumors
 
+## Research & Development
+### Model Training
+The brain tumor classification model was developed and trained using Kaggle's GPU accelerator. You can explore the complete training process, methodology, and implementation details here:
+- 📊 [Kaggle Notebook: Xception Fine-tuned Brain MRI Tumor Classifier](https://www.kaggle.com/code/kietdo104/xception-finetuned-brainmritumor-classifier)
+
+### Model Architecture
+The system utilizes a fine-tuned Xception model, which has been specifically optimized for medical image classification tasks. The model achieves high accuracy through:
+- Transfer Learning from ImageNet weights
+- Custom fine-tuning for brain tumor detection
+- Advanced data augmentation techniques
+- Optimization for medical imaging specifics
+
+## Dataset
+The model was trained on a comprehensive dataset of brain MRI scans, including:
+- Multiple tumor types and classifications
+- Various scanning angles and conditions
+- Different medical imaging equipment outputs
+- Diverse patient demographics
+
 ## Contributing
 1. Fork the repository
 2. Create your feature branch: `git checkout -b feature/YourFeature`
@@ -116,16 +135,16 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Kyoz004
 
 ## Acknowledgments
-- VLU University
-- Brain Tumor Research Society
-- Medical professionals who provided guidance
+- Van Lang University
 
 ## Contact
 - GitHub: [@Kyoz004](https://github.com/Kyoz004)
 - Email: kietdo14.it@gmail.com
 
 ## Version History
-- 1.0.0: Initial Release
+- 1.1: Initial Release (May 2025)
     - Basic tumor detection
-    - Web interface
-    - Analysis reports
+    - Web interface implementation
+    - Analysis reports generation
+    - Integration with fine-tuned Xception model
+    - Kaggle notebook publication and documentation
