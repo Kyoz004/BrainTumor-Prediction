@@ -1,4 +1,4 @@
-# Brain Tumor Detection System 🧠
+# DeepLearning Brain Tumor Classifier 🧠
 
 ## Overview
 A web-based application that uses deep learning to detect and classify brain tumors from MRI scans. The system provides real-time analysis and visualization of results with high accuracy predictions.
@@ -50,16 +50,34 @@ braintumor_react/
 ### Prerequisites
 - Node.js (v14+)
 - Python (3.8+)
-- Git LFS (for handling large model files)
+- Git LFS (required for model file download)
+
+### Git LFS Setup
+```bash
+# Install Git LFS
+# Windows (using chocolatey)
+choco install git-lfs
+
+# Or download from https://git-lfs.github.com
+
+# Initialize Git LFS
+git lfs install
+```
+
+### Clone Repository
+```bash
+# Clone with Git LFS to get the full model file (137MB)
+git lfs clone https://github.com/Kyoz004/DeepLearning-BrainTumor-Classifier.git
+
+# Navigate to project directory
+cd DeepLearning-BrainTumor-Classifier
+
+# Verify model file size (should be ~137MB)
+dir backend\models\brain_tumor_classifier.h5
+```
 
 ### Setup Frontend
 ```bash
-# Clone the repository
-git clone https://github.com/Kyoz004/BrainTumor-Prediction.git
-
-# Navigate to project directory
-cd BrainTumor-Prediction
-
 # Install dependencies
 npm install
 
@@ -75,18 +93,36 @@ cd backend
 # Create virtual environment
 python -m venv venv
 
-# Activate virtual environment
-# On Windows
+# Activate virtual environment (Windows)
 venv\Scripts\activate
-# On Unix or MacOS
-source venv/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt
 
+# Verify model file integrity
+python -c "import h5py; h5py.File('models/brain_tumor_classifier.h5', 'r')"
+
 # Start Flask server
 python app.py
 ```
+
+### Troubleshooting Model File
+If the model file is only 135KB:
+```bash
+# Clean Git LFS cache
+git lfs prune
+
+# Force download LFS objects
+git lfs pull
+git lfs checkout
+
+# Verify file size again
+dir backend\models\brain_tumor_classifier.h5
+```
+
+Alternative model file sources:
+1. [Kaggle Notebook](https://www.kaggle.com/code/kietdo104/xception-finetuned-brainmritumor-classifier)
+2. Contact repository owner for direct download
 
 ## Usage
 1. Start both frontend and backend servers
@@ -98,7 +134,8 @@ python app.py
 
 ## Model Information
 - Architecture: Xception CNN
-- Training Dataset: Brain MRI Images
+- File Size: 137MB (full model)
+- Format: HDF5 (.h5)
 - Accuracy: 98.5%
 - Classes: Multiple types of brain tumors
 
@@ -132,7 +169,7 @@ The model was trained on a comprehensive dataset of brain MRI scans, including:
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Authors
-- Kyoz004
+- Kyoz004 (Lead Developer)
 
 ## Acknowledgments
 - Van Lang University
@@ -140,11 +177,19 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Contact
 - GitHub: [@Kyoz004](https://github.com/Kyoz004)
 - Email: kietdo14.it@gmail.com
+- Kaggle: [kietdo104](https://www.kaggle.com/kietdo104)
 
 ## Version History
-- 1.1: Initial Release (May 2025)
-    - Basic tumor detection
-    - Web interface implementation
-    - Analysis reports generation
-    - Integration with fine-tuned Xception model
-    - Kaggle notebook publication and documentation
+### v1.1 (May 2025)
+- Enhanced visualization features
+- Improved model accuracy to 98.5%
+- Advanced analysis reporting
+- Real-time detection optimization
+- Git LFS integration for model distribution
+- Integration with Kaggle notebook
+
+### v1.0 (April 2025)
+- Initial release
+- Basic tumor detection
+- Web interface implementation
+- Model development and training
