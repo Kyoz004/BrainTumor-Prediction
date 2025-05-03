@@ -1,0 +1,843 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --black-color: hsl(220, 24%, 12%);
+  --black-color-light: hsl(220, 24%, 15%);
+  --black-color-lighten: hsl(220, 20%, 18%);
+  --white-color: #fff;
+  --body-color: #F4F5F9;
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: "Montserrat", sans-serif;
+  --normal-font-size: .938rem;
+
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1024px) {
+  :root {
+    --normal-font-size: 1rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color);
+}
+
+ul {
+  list-style: none;
+  /* Color highlighting when pressed on mobile devices */
+  /*-webkit-tap-highlight-color: transparent;*/
+}
+
+a {
+  text-decoration: none;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+  max-width: 1120px;
+  margin-inline: 1.5rem;
+}
+
+/*=============== HEADER ===============*/
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--black-color);
+  box-shadow: 0 2px 16px hsla(220, 32%, 8%, .3);
+  z-index: var(--z-fixed);
+}
+
+/*=============== NAVBAR ===============*/
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: var(--header-height);
+    background-color: var(--black-color);
+}
+
+.nav__logo {
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--white-color);
+    text-decoration: none;
+}
+
+.nav__logo i {
+    font-size: 1.5rem;
+    color: var(--white-color);
+}
+
+.nav__toggle {
+    display: none;
+    font-size: 1.5rem;
+    color: var(--white-color);
+    cursor: pointer;
+}
+
+.nav__list {
+    display: flex;
+    align-items: center;
+    column-gap: 2.5rem;
+}
+
+.nav__item, .dropdown__item {
+    position: relative;
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+}
+
+.nav__link,
+.dropdown__link {
+    color: var(--white-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav__link {
+    display: flex;
+    align-items: center;
+    column-gap: 0.25rem;
+    font-weight: 500;
+    height: 100%;
+    padding: 0 0.5rem;
+}
+
+.nav__link:hover {
+    color: var(--primary-color);
+}
+
+/* Dropdown */
+.dropdown__item {
+    cursor: pointer;
+}
+
+.dropdown__arrow {
+    font-size: 1.25rem;
+    transition: transform 0.3s;
+}
+
+.dropdown__menu {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background-color: var(--black-color);
+    border-radius: 0 0 0.5rem 0.5rem;
+    padding: 1rem 0;
+    min-width: 180px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.dropdown__item:hover .dropdown__menu {
+    opacity: 1;
+    visibility: visible;
+    top: calc(100% - 0.5rem);
+}
+
+.dropdown__item:hover .dropdown__arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown__link {
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.dropdown__link i {
+    font-size: 1.25rem;
+}
+
+.dropdown__link:hover {
+    background-color: var(--black-color-light);
+    color: var(--primary-color);
+}
+
+/* Show menu */
+.show-menu {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* For small devices */
+@media screen and (max-width: 1118px) {
+    .nav {
+        padding: 0 1rem;
+    }
+
+    .nav__menu {
+        position: fixed;
+        top: var(--header-height);
+        left: -100%;
+        background-color: var(--black-color);
+        width: 100%;
+        padding: 2rem 0;
+        transition: all 0.3s ease;
+        z-index: 100;
+    }
+
+    .nav__list {
+        flex-direction: column;
+        row-gap: 1.5rem;
+        align-items: flex-start;
+    }
+
+    .nav__item, .dropdown__item {
+        width: 100%;
+        height: auto;
+    }
+
+    .nav__link {
+        width: 100%;
+        justify-content: space-between;
+        padding: 1rem 2rem;
+    }
+
+    .dropdown__menu {
+        position: static;
+        background-color: var(--black-color-light);
+        padding-left: 2rem;
+        opacity: 1;
+        visibility: visible;
+        display: none;
+    }
+
+    .dropdown__item:hover .dropdown__menu {
+        display: block;
+    }
+
+    .show-menu {
+        left: 0;
+    }
+
+    .dropdown__link {
+        padding: 0.5rem 0;
+    }
+}
+
+/*=============== FOOTER ===============*/
+.container {
+    max-width: 1170px; /* Maximum width for the container */
+    margin: auto; /* Center the container */
+}
+
+.row {
+    display: flex; /* Use Flexbox for layout */
+    flex-wrap: wrap; /* Allow wrapping of items */
+    justify-content: center; /* Center the items */
+}
+
+ul {
+    list-style: none; /* Remove default bullet points */
+    padding: 0; /* Remove default padding */
+}
+
+.footer {
+    background-color: hsl(220, 24%, 12%); /* Footer background color */
+    padding: 70px 0; /* Vertical padding in footer */
+}
+
+.footer-col {
+    flex: 1; /* Allow columns to grow based on available space */
+    min-width: 200px; /* Minimum width for responsiveness */
+    padding: 0 15px; /* Adjust padding for spacing */
+    text-align: center; /* Center text within the footer-col */
+}
+
+.footer-col h4 {
+    font-size: 18px; /* Font size for headings */
+    color: #ffffff; /* Heading color */
+    text-transform: capitalize; /* Capitalize headings */
+    margin-bottom: 35px; /* Space below headings */
+    font-weight: 500; /* Font weight for headings */
+    position: relative; /* Positioning for before pseudo-element */
+}
+
+.footer-col h4::before {
+    content: ''; /* Before pseudo-element for decoration */
+    position: absolute; /* Positioning */
+    left: 0; /* Left alignment */
+    bottom: -10px; /* Space from the bottom */
+    background-color: hsl(220, 89%, 31%); /* Decoration color */
+    height: 2px; /* Height of the decoration */
+    box-sizing: border-box; /* Box sizing adjustment */
+    width: 50px; /* Width of the decoration */
+}
+
+.footer-col ul li:not(:last-child) {
+    margin-bottom: 10px; /* Space between list items */
+}
+
+.footer-col ul li a {
+    font-size: 16px; /* Font size for links */
+    text-transform: capitalize; /* Capitalize links */
+    color: #bbbbbb; /* Link color */
+    text-decoration: none; /* Remove underline */
+    font-weight: 300; /* Font weight for links */
+    display: block; /* Block display for links */
+    transition: all 0.3s ease; /* Transition for hover effects */
+}
+
+.footer-col ul li a:hover {
+    color: #ffffff; /* Change color on hover */
+    padding-left: 8px; /* Add left padding on hover */
+}
+
+.footer-col .social-links {
+    margin-bottom: 20px; /* Space below social links */
+}
+
+.footer-col .social-links a {
+    display: inline-block; /* Inline block for social icons */
+    height: 40px; /* Height for social icons */
+    width: 40px; /* Width for social icons */
+    background-color: rgba(255, 255, 255, 0.2); /* Background color for icons */
+    margin: 0 28px 0; /* Increase horizontal margin between icons */
+    text-align: center; /* Center text within icons */
+    line-height: 40px; /* Line height to center icons */
+    border-radius: 50%; /* Circular icons */
+    color: #ffffff; /* Icon color */
+    transition: all 0.5s ease; /* Transition for hover effects */
+}
+
+
+.footer-col .social-links a:hover {
+    color: #24262b; /* Icon color on hover */
+    background-color: #ffffff; /* Background color on hover */
+}
+
+.footer-copy {
+    text-align: center; /* Center the copyright text */
+    color: #bbbbbb; /* Initial color for copyright text */
+    margin-top: 20px; /* Margin above the copyright text */
+    transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+.footer-copy:hover {
+    color: #ffffff; /* Change color on hover */
+}
+
+.footer-col ul.footer-links {
+    display: flex; /* Use flexbox to arrange links in a row */
+    justify-content: center; /* Center the links */
+    padding: 0; /* Remove padding */
+}
+
+.footer-col ul.footer-links li {
+    margin: 0 15px; /* Space between each link */
+}
+
+/*responsive*/
+@media(max-width: 767px){
+  .footer-col{
+    width: 50%;
+    margin-bottom: 30px;
+}
+}
+@media(max-width: 574px){
+  .footer-col{
+    width: 100%;
+}
+}
+
+.footer-logo {
+    max-width: 150px; /* Limit the width of the logo */
+    height: auto; /* Maintain the aspect ratio */
+    margin-top: 30px; /* Space below the logo */
+}
+
+/* Optional: Add additional responsiveness if needed */
+@media(max-width: 767px) {
+    .footer-logo {
+        max-width: 120px; /* Adjust size for smaller screens */
+    }
+}
+
+/*=============== about ===============*/
+.about-us {
+    padding: 2rem; /* Thêm khoảng cách bên trong cho div */
+    background-color: var(--body-color); /* Nền trắng sáng hơn giúp nội dung nổi bật */
+    color: var(--black-color); /* Màu chữ chính cho nội dung */
+    border-radius: 8px; /* Làm mềm các góc của div */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Thêm bóng để tạo chiều sâu */
+}
+
+.about-us {
+    overflow: visible;
+}
+
+.about-us h1 {
+    font-size: 2rem; /* Kích thước tiêu đề chính */
+    margin-top: 4rem; /* Thêm khoảng cách trên cho tiêu đề */
+    margin-bottom: 0.5rem; /* Giảm khoảng cách dưới tiêu đề chính */
+}
+
+
+.about-us h2 {
+    font-size: 1.5rem; /* Kích thước tiêu đề phụ */
+    margin-top: 1.0rem; /* Khoảng cách trên cho tiêu đề phụ */
+    margin-bottom: 0.5rem; /* Khoảng cách dưới cho tiêu đề phụ */
+    color: var(--black-color); /* Màu chữ tiêu đề phụ */
+}
+
+.about-us p {
+    line-height: 1.6; /* Giúp nội dung giữa các dòng dễ đọc */
+    margin-bottom: 1rem; /* Khoảng cách dưới cho đoạn văn */
+}
+
+.about-us ul {
+    list-style-type: disc; /* Dùng dấu chấm trong danh sách */
+    margin-left: 1.5rem; /* Khoảng cách bên trái cho danh sách */
+}
+
+.about-us li {
+    margin-bottom: 0.5rem; /* Khoảng cách giữa các mục trong danh sách */
+}
+
+/*=============== diagnosis ===============*/
+/* Diagnosis Container */
+.highlight {
+    color: #007bff; /* Primary color for emphasis */
+    font-weight: bold; /* Bold text for more impact */
+    font-style: italic; /* Italic for distinctness */
+}
+
+.diagnosis {
+    text-align: justify;
+    max-width: 800px; /* Increased max width for better readability */
+    margin: 6rem auto; /* Center the container with space above */
+    padding: 30px; /* Increased padding for more space around content */
+    background-color: #E7E8EF; /* Light background color */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Enhanced shadow for depth */
+}
+
+/* Heading */
+.diagnosis h1 {
+    text-align: center; /* Center align the heading */
+    color: #333; /* Darker color for the heading */
+    margin-bottom: 20px; /* Space below heading */
+}
+
+/* Diagnosis Information Container */
+.diagnosis-container {
+    max-width: 100%; /* Allow full width inside parent diagnosis */
+    margin: 20px 0; /* Margins around the container */
+    padding: 15px; /* Padding inside the container */
+    background-color: #F4F5F9; /* Light grey background color */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Heading for the Info Container */
+.diagnosis-container h2 {
+    text-align: center; /* Center the heading */
+    color: #333; /* Dark color for contrast */
+    margin-bottom: 15px; /* Bottom margin for spacing */
+}
+
+/* Paragraph Text */
+.diagnosis-container p {
+    line-height: 1.6; /* Improve readability with line height */
+    color: #555; /* Slightly lighter color for text */
+    text-align: justify; /* Justify text for a cleaner look */
+    margin: 0; /* Reset margin */
+}
+
+/* File Input */
+input[type="file"] {
+    display: block; /* Block level for better layout */
+    margin: 0rem auto; /* Center the file input with 1rem space above and below */
+    padding: 10px; /* Padding inside the input */
+    border: 2px dashed #007bff; /* Dashed border with a primary color */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor for interactivity */
+    width: 80%; /* Adjust width */
+}
+
+/* Image Preview Container */
+.preview-container {
+    text-align: center; /* Center align the preview content */
+    margin: 0rem auto; /* Space above and below the preview container */
+}
+
+/* Preview Image */
+.image-preview {
+    max-width: 100%; /* Responsive size */
+    margin: 5px auto; /* Center image with auto margins */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 5px; /* Rounded corners for the image */
+}
+
+/* Error Message */
+.error-message {
+    color: red; /* Red for error messages */
+    font-weight: bold; /* Bold font style for emphasis */
+    text-align: center; /* Center aligned error message */
+    margin: 1rem auto; /* Space above and below the error message */
+}
+
+/* Submit Button */
+.btn-submit {
+    display: block; /* Block level button */
+    width: 100%; /* Full width button */
+    padding: 10px; /* Padding inside the button */
+    background-color: #007bff; /* Primary color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor for interactivity */
+    font-size: 16px; /* Font size */
+    margin: 1rem auto; /* Space above and below the button */
+}
+
+.btn-submit:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+.btn-remove {
+    display: block; /* Block level button */
+    width: 100%; /* Full width button */
+    padding: 10px; /* Padding inside the button */
+    background-color: #dc3545; /* Primary color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor for interactivity */
+    font-size: 16px; /* Font size */
+    margin: 1rem auto; /* Space above and below the button */
+}
+
+.btn-remove:hover {
+    background-color: #c82333; /* Darker shade on hover */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+/* Responsive Styling */
+@media (max-width: 600px) {
+    .diagnosis {
+        width: 90%; /* Adjust to 90% for smaller devices */
+        padding: 20px; /* Less padding on smaller screens */
+    }
+
+    .diagnosis-container {
+        width: 100%; /* Full width for info container */
+    }
+
+    input[type="file"] {
+        width: 100%; /* Full width input on small screens */
+    }
+}
+
+.drop-area {
+    border: 2px dashed #007bff;
+    border-radius: 10px;
+    text-align: center;
+    padding: 50px;
+    margin: 1rem 0;
+    cursor: pointer; /* Cho phép nhấn vào khu vực */
+    position: relative; /* Để kiểm soát vị trí của các phần tử con */
+}
+
+.drop-area p {
+    margin: 0; /* Xóa lề mặc định */
+    color: #007bff; /* Màu chữ */
+    font-weight: bold;
+}
+
+.drop-area.hover {
+    border-color: #0056b3; /* Đổi màu viền khi hover */
+    background-color: rgba(0, 123, 255, 0.1); /* Thêm màu nền khi hover */
+}
+
+.drop-area i {
+    font-size: 40px; /* Adjust the size of the icon */
+    color: #007bff; /* Icon color */
+    margin-bottom: 10px; /* Space between icon and text */
+}
+
+/* Container cha */
+.diagnosis-container {
+    display: flex; /* Sử dụng Flexbox */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    min-height: 100vh; /* Đảm bảo chiếm toàn bộ chiều cao của viewport */
+    margin: 0; /* Không có khoảng cách */
+}
+
+/* Container for the diagnosis result */
+.diagnosis-result {
+    padding: 20px; /* Adding some padding */
+    max-width: 800px; /* Limit the width of the container */
+    margin-top: 6rem;
+    background-color: #E7E8EF; /* Light gray background for contrast */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+/* Heading Style */
+.diagnosis-result h1 {
+    font-size: 2em; /* Increase the size of the heading */
+    margin-bottom: 20px; /* Space between heading and image */
+    text-align: center; /* Center the heading */
+    color: #333; /* Dark gray color for the heading */
+}
+
+/* Image container style */
+.image-container {
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center the image horizontally */
+    margin-bottom: 20px; /* Space below the image */
+}
+
+/* Image style */
+.result-image {
+    max-width: 100%; /* Make the image responsive */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Rounded corners for the image */
+}
+.diagnosis-message {
+    text-align: center; /* Căn giữa văn bản */
+    margin: 20px 0; /* Khoảng cách phía trên và phía dưới */
+    font-size: 1.2em; /* Kích thước font lớn hơn một chút */
+    color: #555; /* Màu xám nhạt hơn cho văn bản */
+    background-color: #F9F9F9; /* Nền sáng cho văn bản */
+    padding: 15px; /* Thêm khoảng cách bên trong */
+    border-radius: 5px; /* Góc bo cho nền tin nhắn */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ cho tin nhắn */
+}
+
+/* Styles for the button container */
+.button-container {
+    display: flex; /* Use flexbox layout */
+    justify-content: center; /* Center the items horizontally */
+    align-items: center; /* Center vertically if needed */
+    gap: 1rem; /* Space between the buttons */
+    margin: 2rem 0; /* Add margin for spacing */
+}
+
+/* Existing styles for upload link */
+.upload-link {
+    display: inline-block; /* Keep the inline-block property */
+    padding: 10px 20px; /* Inner padding */
+    background-color: #007bff; /* Primary background color */
+    color: white; /* Text color */
+    text-align: center; /* Center with text */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* No underline */
+    transition: background-color 0.3s; /* Transition effect */
+}
+
+/* Hover effect for upload link */
+.upload-link:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Styles for download button */
+.btn-download-reports {
+    padding: 10px 20px; /* Inner padding for the button */
+    color: var(--white-color); /* Text color */
+    background-color: var(--primary-color); /* Primary button color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1rem; /* Font size */
+    font-weight: var(--font-semi-bold); /* Semi-bold font weight */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, transform 0.3s; /* Animation for hover effects */
+    text-align: center; /* Center text */
+}
+
+.btn-download-reports:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+    transform: scale(1.05); /* Slight scaling effect */
+}
+
+.btn-download-reports:focus {
+    outline: 2px solid #0056b3; /* Focus outline for accessibility */
+}
+
+
+/* index */
+.main-content {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.introduction {
+    display: flex;
+    align-items: flex-start; /* Căn chỉnh phần tử lên trên cùng */
+    gap: 2rem;
+    margin-bottom: -3rem;
+}
+
+.intro-text h2 {
+    margin-top: 9.6rem;
+    font-size: 2.8rem; /* Tăng kích thước chữ cho tiêu đề */
+    font-weight: 700;
+    color: #333;
+}
+.intro-text p {
+    font-size: 1.25rem; /* Tăng kích thước chữ cho đoạn văn */
+    line-height: 1.6;
+    color: #555;
+    margin-top: 1rem; /* Giảm khoảng cách top cho đoạn văn */
+    text-align: justify; /* Justify văn bản */
+}
+
+.intro-image {
+    flex-shrink: 0; /* Ngăn hình ảnh co lại */
+}
+
+.intro-image img {
+    margin-top: 9.6rem;
+    width: 100%;
+    max-width: 500px; /* Giới hạn kích thước tối đa cho hình ảnh */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Thêm bóng để có cái nhìn hiện đại */
+    transition: transform 0.3s; /* Hiệu ứng chuyển động mượt mà khi hover */
+}
+
+.intro-image img:hover {
+    transform: scale(1.05); /* Phóng to hình ảnh khi hover */
+}
+
+
+.options {
+    margin-top: 80px;
+    text-align: center; /* Căn giữa toàn bộ văn bản bên trong .options */
+   /* Giúp căn giữa nếu phần tử có chiều rộng */
+}
+
+
+.options h3 {
+    font-size: 2.5rem; /* Tăng kích thước chữ cho tiêu đề nếu cần */
+    color: #444;
+    margin-bottom: 0.5rem;
+}
+
+.option-buttons {
+    display: flex;
+    justify-content: center; /* Căn giữa các nút */
+    align-items: center; /* Căn giữa theo chiều dọc nếu cần */
+    gap: 1.5rem; /* Khoảng cách giữa các nút */
+    margin-top: 0.2rem; /* Khoảng cách giữa tiêu đề và nút */
+}
+
+.option-button-wrapper {
+    position: relative;
+    display: inline-block; /* Đảm bảo phần tử bao quanh nút không chiếm toàn bộ chiều rộng */
+}
+
+.option-button {
+    display: block;
+    padding: 1.5rem 1.5rem;
+    font-size: 1.2rem;
+    color: white;
+    background-color: #565863;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+    gap: 3rem; /* Tăng khoảng cách giữa các nút */
+    margin-bottom: 1.5rem; /* Tăng khoảng cách dưới mỗi nút */
+}
+
+.option-button:hover {
+    background-color: #707c8c; /* Đổi màu nền khi hover */
+    transform: scale(1.05);
+}
+
+.description {
+    position: absolute;
+    top: 100%; /* Thay đổi từ 110% xuống 100% để dời lên gần nút hơn */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    padding: 0.8rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    opacity: 0;
+    pointer-events: none;
+    text-align: center;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.option-button-wrapper:hover .description {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.8);
+        z-index: 9999;
+    }
+
+    .spinner {
+        border: 8px solid #f3f3f3;
+        border-top: 8px solid #3498db;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .preloader p {
+        margin-top: 10px;
+        font-size: 18px;
+        color: #333;
+    }
